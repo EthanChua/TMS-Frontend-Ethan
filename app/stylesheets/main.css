@@ -1,0 +1,276 @@
+/* overall */
+body {
+  min-width: 500px;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #3aafa9;
+  font-family: "Open Sans";
+  overflow: hidden;
+}
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* header bar */
+.header-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  font-size: 14px;
+  z-index: 1;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+.header-container {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  justify-content: space-between;
+  grid-column-gap: 10px;
+  height: 100%;
+  padding: 10px 20px;
+}
+.header-grp {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  justify-content: space-between;
+  grid-column-gap: 10px;
+}
+.header-btn {
+  height: 2rem;
+  background: none;
+}
+.header-btn:hover {
+  outline: 1px solid #17252a;
+}
+
+/* login page */
+.login-card {
+  padding: 50px;
+  min-height: max-content;
+  min-width: min-content;
+  width: 20vw;
+  border-radius: 10px;
+  text-align: center;
+}
+.login-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+.login-form-group {
+  display: grid;
+  grid-template-rows: repeat(2, auto auto);
+  margin-bottom: 10px;
+  text-align: start;
+}
+.login-form-group input {
+  font-size: 20px;
+  padding: 10px 5px;
+  margin-bottom: 4px;
+}
+.login-btn {
+  outline: 1px solid #3aafa9;
+  background-color: transparent;
+  padding: 1px 20px;
+  height: 2rem;
+  align-self: flex-end;
+}
+.login-btn:hover {
+  background-color: #3aafa9;
+}
+.login-error {
+  border: 1px solid rgb(255, 70, 70);
+  background-color: rgba(255, 216, 216, 0.596);
+  color: rgb(255, 70, 70);
+  padding: 4px;
+  margin-bottom: 20px;
+  text-wrap: wrap;
+  visibility: hidden;
+}
+
+/* body content - left nav */
+.sidebar {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  width: 140px;
+  padding: 10px 0px 80px;
+}
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* overlay - right container */
+.profile {
+  position: fixed;
+  top: 60px;
+  right: 0px;
+  bottom: 50px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  min-height: 230px;
+  width: min-content;
+  padding: 50px;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+.profile input {
+  margin-bottom: 10px;
+}
+
+/* wrapper */
+.content-container {
+  box-sizing: border-box;
+  position: relative;
+  margin: 10px;
+  margin-left: 150px;
+  padding: 20px;
+  min-height: calc(100% - 20px);
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.content-container::before {
+  box-shadow: inset -5px 0px 10px 10px black;
+  z-index: 1;
+}
+
+/* user management */
+.user-grid-header {
+  display: grid;
+  grid-template-columns: 100px 100px 150px minmax(100px, 1fr) 50px minmax(20px, 2fr) 150px;
+  gap: 10px 10px;
+  align-items: center;
+  padding: 0 10px;
+}
+.user-form {
+  display: grid;
+  grid-template-areas: "username password email role status . cancel edit";
+  grid-template-columns: 100px 100px 150px minmax(100px, 1fr) 50px minmax(20px, 2fr) 70px 70px;
+  gap: 10px 10px;
+  width: 100%;
+  margin: 0;
+}
+.user-form input:disabled,
+.user-form button:disabled,
+.user-form select:disabled {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: black;
+  cursor: default;
+}
+
+/* app list */
+.app-grid-header {
+  display: grid;
+  grid-template-columns: 150px 150px 150px minmax(20px, 2fr);
+  gap: 10px 10px;
+  align-items: center;
+  padding: 0 10px;
+}
+.app-card {
+  display: grid;
+  grid-template-areas: "acronym startdate enddate .";
+  grid-template-columns: 150px 150px 150px minmax(100px, 2fr);
+  gap: 10px 10px;
+  width: 100%;
+  margin: 0;
+  padding: 10px;
+}
+.list-card-container:has(.app-card) {
+  padding: 0;
+}
+.list-card-container:has(.app-card):hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+.list-card-container:has(.app-card button:hover):hover {
+  box-shadow: none;
+}
+.appinfo-form {
+  display: grid;
+  grid-template-areas: "acronym-title acronym . open-title open" "rnumber-title rnumber . todolist-title todolist" "startdate-title startdate . doing-title doing" "enddate-title enddate . done-title done" "desc-title desc desc . ." "desc-title desc desc . ." "desc-title desc desc . ." "desc-title desc desc . button";
+  grid-template-columns: max-content 150px 1fr max-content 150px;
+  grid-template-rows: repeat(5, 20px) 1fr 20px 20px;
+  gap: 10px;
+  text-align: end;
+  padding: 0 30px 30px;
+  height: -webkit-fill-available;
+  min-width: 80%;
+  align-self: center;
+}
+.appinfo-form input:disabled,
+.appinfo-form select:disabled,
+.appinfo-form textarea:disabled {
+  color: black;
+  background-color: transparent;
+  border: none;
+  appearance: none;
+}
+
+/* plan list */
+
+/* task list */
+.kanban-board {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 0;
+  min-height: calc(100% - 180px);
+  height: max-content;
+}
+.kanban-board h2 {
+  text-wrap: nowrap;
+  margin-top: 0;
+}
+.column {
+  flex: 1;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  padding: 10px;
+}
+.task {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.create-task-form {
+  display: grid;
+  grid-template-areas: ". ." ". ." ". ." ". ." ". button";
+  justify-items: end;
+  gap: 10px;
+  text-wrap: nowrap;
+  padding: 0 20px;
+}
+.create-task-form input:disabled,
+.create-task-form textarea:disabled {
+  color: black;
+  background-color: transparent;
+  border: none;
+  appearance: none;
+}
+
+/* footer bar */
+.footer {
+  position: sticky;
+  bottom: 0;
+  height: 50px;
+}
