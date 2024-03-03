@@ -1,9 +1,5 @@
-import React from "react"
+import { createContext } from "react"
 
-import Container from "./Container"
+const StateContext = createContext()
 
-function Page(props) {
-  return <Container class={`body-content ${props.class ? props.class : ""}`}>{props.children}</Container>
-}
-
-export default Page
+export default StateContext

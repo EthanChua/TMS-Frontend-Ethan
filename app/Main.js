@@ -13,11 +13,11 @@ import DispatchContext from "./DispatchContext"
 import StateContext from "./StateContext"
 
 // import components
-//import Header from "./components/Header"
-//import Login from "./components/Login"
-//import ErrorPage from "./components/ErrorPage"
-//import Footer from "./components/Footer"
-//import Toast from "./components/Toast"
+import Header from "./components/Header"
+import Login from "./components/Login"
+import ErrorPage from "./components/ErrorPage"
+import Footer from "./components/Footer"
+import Toast from "./components/Toast"
 //import Profile from "./components/Profile"
 //import Home from "./components/Home"
 //import UserMgmt from "./components/UserMgmt"
@@ -88,7 +88,7 @@ function reducer(draft, action) {
 function MainComponent() {
   const [state, dispatch] = useImmerReducer(reducer, initialState)
 
-  console.log("main state ", state)
+  //console.log("main state", state)
 
   // check authentication and authorization on page load for display of buttons
   const fetchAuth = async () => {
@@ -96,7 +96,9 @@ function MainComponent() {
       // check permissions: in this case only admin
       // Make authorization request to the server
       const token = Cookies.get("token")
-      const response = await Axios.post("/checkgroup", { groupname: "admin", token })
+      const response = await Axios.post("/Checkgroup", { groupname: "admin", token })
+
+      //console.log(response)
 
       // if not logged in
       if (response.data.unauth === "login") {
@@ -148,11 +150,11 @@ function MainComponent() {
           <Routes>
             <Route path="/login" element={<Login />} />
             {/* <Route path="/apps" element={state.user ? <Home onLoad={fetchAuth} /> : state.loading ? <ErrorPage /> : <Login />} /> */}
-            <Route path="/" element={<Navigate to="/apps" replace />} />
-            <Route path="/usermgmt" element={state.user ? <UserMgmt onLoad={fetchAuth} /> : state.loading ? <ErrorPage /> : <Login />} />
+            {/* <Route path="/" element={<Navigate to="/apps" replace />} />
+            <Route path="/usermgmt" element={state.user ? <UserMgmt onLoad={fetchAuth} /> : state.loading ? <ErrorPage /> : <Login />} /> */}
             {/* <Route path="/apps/:appid" element={state.user ? <TaskDashboard onLoad={fetchAuth} /> : state.loading ? <ErrorPage /> : <Login />} />
             <Route path="/apps/:appid/task/:taskid" element={state.user ? <TaskDashboard onLoad={fetchAuth} /> : state.loading ? <ErrorPage /> : <Login />} /> */}
-            <Route path="/logout" element={<Navigate to="/login" replace />} />
+            {/* <Route path="/logout" element={<Navigate to="/login" replace />} /> */}
             <Route path="/error" element={<ErrorPage />} />
             <Route path="*" element={<Navigate replace to="/error" />} />
           </Routes>
